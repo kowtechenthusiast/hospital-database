@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+{% block title %}
+Book Appointment
+{% endblock title %}
+{% block css %}
+<style>
+  .p-form {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 35px;
+  }
+  
+  #form-title {
+        margin: 50px 0px 25px 0px;
+        position: relative;
+        color: rgb(55, 55, 116);
+        display: inline-block;
+      }
+  
+      #form-title::after {
+        content: "";
+        width: 100%;
+        height: 8px;
+        background-color: rgb(64, 64, 105);
+        position: absolute;
+        left: 0;
+        bottom: -15px;
+        border-radius: 50%;
+        opacity: 0.7;
+        box-shadow: 3px 3px 15px rgb(55, 55, 116);
+      }
+  form {
+    min-width: 300px;
+    max-width: 1000px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.631);
+    font-family: "Roboto", sans-serif;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.421);
+    padding: 30px;
+  }
+  
+  form fieldset {
+    margin: 8px 30px;
+    border: 3px solid rgb(149, 167, 149);
+    border-radius: 10px;
+    background-color: rgba(211, 219, 211, 0.66);
+  }
+  
+  form p {
+    margin: 20px 60px;
+    font-size: 1.3rem;
+  }
+  
+  form legend {
+    margin-left: 20px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #3d693f;
+  }
+  
+  form label {
+    display: block;
+    margin-top: 15px;
+  }
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="time"],
+  select {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    padding: 5px 20px;
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid rgb(170, 166, 166);
+  }
+  
+  input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 15px 8px;
+  }
+  
+  input[type="radio"] + label {
+    display: inline;
+    margin: 30px 15px;
+  }
+  
+  input:not([type="radio"]):focus,
+  select:focus{
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+  }
+  form .btn {
+    width: 130px;
+    height: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  form .btn:hover {
+        transform: scale(0.97);
+        opacity: 0.8;
+  }
+  button[type="submit"] {
+        margin: 10px 30px;
+        background-color: #4CAF50;
+        color: white;
+      }
+      
+      button[type="reset"] {
+        background-color: #f44336;
+        color: white;
+      }
+</style>
+
+{% endblock css %}
+
+{% block body %}
+<div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+              <div class="flash-message flash-{{ category }}">
+                  {{ message }}
+                  <button class="flash-close" onclick="this.parentElement.style.display='none';">&times;</button>
+              </div>
+          {% endfor %}
+      {% endif %}
+  {% endwith %}
+</div>
+<div style="text-align: center;"><h1 id="form-title">Patient Registration</h1></div>
+<div class="p-form">
+  <form action="/patient" method="post">
+        <fieldset>
+          <legend>Persinal Information</legend>
+          <p>
+            <label for="firstName">First name: </label>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              placeholder="M S"
+              required
+            />
+          </p>
+          <p>
+            <label for="lastName">Last name: </label>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              placeholder="Kapoor"
+              required
+            />
+          </p>
+          
+          <p>
+            <label for="age">Age: </label>
+            <input type="number" name="age" id="age" min="1" max="150"/>
+          </p>
+          <p>
+            <label for="gender">Gender: </label>
+            <input type="radio" name="gender" value="male" id="male" required="required"/>
+            <label for="male">Male </label>
+            <input type="radio" name="gender" value="female" id="female" />
+            <label for="female">Female </label>
+            <input type="radio" name="gender" value="other" id="other_gend" />
+            <label for="other_gend">Other </label>
+          </p>
+          <p>
+            <label for="blood">Your Blood group: </label>
+            <select name="blood" id="blood">
+                <option value="" selected>select here</option>
+                <optgroup label="Positive">
+                    <option value="A+">A Positive</option>
+                    <option value="B+">B Positive</option>
+                    <option value="O+">O Positive</option>
+                    <option value="AB+">AB Positive</option>
+                </optgroup>
+                <hr>
+                <optgroup label="Negative">
+                    <option value="A-">A Negative</option>
+                    <option value="B-">B Negative</option>
+                    <option value="O-">O Negative</option>
+                    <option value="AB-">AB Negative</option>
+                </optgroup>    
+            </select>
+          </p>
+          <p>
+            <label for="email">Email id: </label>
+            <input type="email" name="email" id="email" value="{{current_user.email}}" />
+          </p>
+          <p>
+            <label for="phno">Phone no: </label>
+            <input
+              type="tel"
+              name="phno"
+              id="phno"
+              pattern="[0-9]{10}"
+              placeholder="9999999999"
+              required
+            />
+          </p>
+        </fieldset>
+            <br>
+            <fieldset>
+                  <p>
+                        <label for="disease">Disease: </label>
+                        <input
+                          type="text"
+                          name="disease"
+                          id="disease"
+                          placeholder="your disease"
+                          required
+                        />
+                  </p>
+                  <p>
+                        <label for="department">Department: </label>
+                        <select name="department" id="department">
+                              <option value="" >select here</option>
+          {% for d in docs %}
+          <option value="{{d.dept}}" required="required">{{d.dept}}</option>
+          {% endfor %}
+                        </select>
+                  </p>
+                  <p>About you:</p>
+                  <p>
+                        <ul style="list-style-type: none; margin-left: 90px;">
+                              <li><input type="radio" name="status" value="inpatient" id="inpatient" required="required">
+                                    <label for="Inpatient">Inpatient</label></li>
+                                    <li><input type="radio" name="status" value="outpatient" id="outpatient">
+                                          <label for="outpatient">Outpatient</label></li>
+                        </ul> 
+            </p>
+
+        </fieldset>
+        <br />
+        <fieldset>
+          <legend>Your Preference</legend>
+          <p>
+            <label for="date">Date: </label>
+            <input
+              type="date"
+              name="date"
+              id="date"
+              required
+            />
+          </p>
+              <p>
+            <label for="time">Time: </label>
+            <input
+              type="time"
+              name="time"
+              id="time"
+              required
+            />
+          </p>
+        </fieldset>
+        <br>
+
+            <button type="submit" class="btn">Submit</button>
+            <button type="reset" class="btn">Reset</button>
+      </form>
+
+</div>
+{% endblock body %}

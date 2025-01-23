@@ -1,0 +1,128 @@
+{% extends 'base.html' %} {% block title %} Doctor details {% endblock title %}
+{% block css %}
+<style>
+  #title {
+    margin-top: 20px;
+  }
+  .doctor-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9rem;
+    min-width: 90vw;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    left: 5vw;
+  }
+  .doctor-table thead tr {
+    background-color: #009879;
+    color: fff;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.05rem;
+  }
+  .doctor-table th,
+  .doctor-table td {
+    padding: 12px 15px;
+  }
+  .doctor-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    background-color: #b1f4b553;
+  }
+  .doctor-table tbody tr:hover {
+    background-color: transparent;
+  }
+  .doctor-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  .action {
+    width: 120px;
+    height: 30px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid red;
+    /* font-weight:bold; */
+    background-color: rgb(244, 74, 74);
+  }
+  .action:hover {
+    background-color: rgba(244, 74, 74, 0.779);
+    transform: scale(0.9);
+  }
+  #add a {
+    text-align: center;
+    text-decoration: none;
+    font-size: 2rem;
+    display: block;
+  }
+</style>
+
+{% endblock css %} {% block body %}
+<div>
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div class="flash-message flash-{{ category }}">
+    {{ message }}
+    <button
+      class="flash-close"
+      onclick="this.parentElement.style.display='none';"
+    >
+      &times;
+    </button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
+</div>
+<h1 id="title">Doctor Details</h1>
+<table class="doctor-table">
+  <thead>
+    <tr>
+      <th>Did</th>
+      <th>First name</th>
+      <th>Last name</th>
+      {% if current_user.email=="kowshikk606@gmail.com" %}
+      <th>Salary</th>
+      {%endif%}
+      <th>Department</th>
+      <th>Phone no</th>
+      {% if current_user.email=="kowshikk606@gmail.com" %}
+      <th></th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in result %}
+    <tr>
+      <td>{{post.did}}</td>
+      <td>{{post.dFname}}</td>
+      <td>{{post.dLname}}</td>
+      {% if current_user.email=="kowshikk606@gmail.com" %}
+      <td>{{post.salary}}</td>
+      {%endif%}
+      <td>{{post.dept}}</td>
+      <td>{{post.docPhno}}</td>
+      {% if current_user.email=="kowshikk606@gmail.com" %}
+      <td>
+        <a href="/deletedoc/{{post.did}}"
+          ><button
+            class="action"
+            onclick="return confirm('Are you sure to delete data');"
+          >
+            Delete
+          </button></a
+        >
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+  {% if current_user.email=="kowshikk606@gmail.com" %}
+  <tfoot>
+    <tr>
+      <td colspan="8" id="add"><a href="/insertdoc">+</a></td>
+    </tr>
+  </tfoot>
+  {% endif %}
+</table>
+
+{% endblock body %}

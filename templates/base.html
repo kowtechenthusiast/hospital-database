@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style></style>
+    <title>{% block title %} {% endblock title %}</title>
+    {% block css %}{% endblock css %}
+
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="icon" href="../static/fevi.png" />
+  </head>
+  <body>
+    <header>
+      <section id="header">
+        <section id="menu-bar">
+          <h1>
+            Life<span
+              ><img
+                width="40px"
+                src="../static/hospital_7787967.png"
+                alt="" /></span
+            >Line
+          </h1>
+          <button id="icon-button">
+            <div id="icon"></div>
+          </button>
+        </section>
+
+        <nav>
+          <ul>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/doctordetails">Doctor</a></li>
+            <li><a href="/details">Patient Details</a></li>
+            <li><a href="/bookdetail">Booking Details</a></li>
+            <li><a href="/pharmacy">Pharmacy</a></li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+
+    <main>
+      <div id="social">
+        <a
+          href="https://www.instagram.com"
+          target="_blank"
+          data-title="instagram"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a href="https://www.whatsapp.com" target="_blank" title="whatsapp"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
+        <a href="https://www.facebook.com" target="_blank" title="facebook"
+          ><i class="fa-brands fa-facebook"></i
+        ></a>
+      </div>
+      <aside id="side">
+        <i id="side-button" class="fa-solid fa-list-ul"></i>
+        <div id="side-bar">
+          <span id="menu">Menu bar</span>
+          <a href="/index">Home</a>
+          <a href="/pharmacy">Pharmacy</a>
+          <a href="#contactus">Contact Us</a>
+          <a href="#about">About Us</a>
+          <a href="#">FAQ</a>
+          <a id="logout" href="/login">Log Out</a>
+        </div>
+      </aside>
+      {% block body %}{% endblock body %}
+    </main>
+    <footer>
+      <div id="footer">
+        <div>
+          <img
+            width="300px"
+            src="../static/lifeline-1-removebg-preview.png"
+            alt=""
+          />
+          <p id="copy">
+            &copy Copyright 2024. LifeLine Hospitals Group. All Rights Reserved.
+          </p>
+        </div>
+        <ul>
+          <div>
+            <a href="https://www.instagram.com" target="_blank"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </div>
+          <div>
+            <a href="https://www.whatsapp.com" target="_blank"
+              ><i class="fa-brands fa-whatsapp"></i
+            ></a>
+          </div>
+          <div>
+            <a href="https://www.facebook.com" target="_blank"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+          </div>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>

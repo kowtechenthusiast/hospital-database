@@ -1,0 +1,132 @@
+{% extends 'base.html' %} {% block title %} Booking details {% endblock title %}
+{% block css %}
+<style>
+  #title {
+    margin-top: 20px;
+    font-family: "Roboto";
+  }
+  .booking-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.95rem;
+    width: 90vw;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    left: 5vw;
+  }
+  .booking-table thead tr {
+    background-color: #009879;
+    color: fff;
+    font-size: 1.1rem;
+    text-align: left;
+    font-weight: bold;
+  }
+  .booking-table th,
+  .booking-table td {
+    padding: 12px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .booking-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    background-color: #b1f4b553;
+  }
+  .booking-table tbody tr:hover {
+    background-color: transparent;
+  }
+  .booking-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  .action {
+    width: 70px;
+    height: 30px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    outline: none;
+    color: #fff;
+    border: 1px solid red;
+    /* font-weight:bold; */
+    background-color: rgb(244, 74, 74);
+  }
+  #edit {
+    background-color: rgb(75, 75, 212);
+    border: 1px solid rgb(75, 75, 212);
+  }
+  .action:hover {
+    background-color: rgba(244, 74, 74, 0.779);
+    transform: scale(0.9);
+  }
+</style>
+
+{% endblock css %} {% block body %}
+<div>
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div class="flash-message flash-{{ category }}">
+    {{ message }}
+    <button
+      class="flash-close"
+      onclick="this.parentElement.style.display='none';"
+    >
+      &times;
+    </button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
+</div>
+<h1 id="title">Booking Details</h1>
+<table class="booking-table">
+  <thead>
+    <tr>
+      <th>Pid</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Blood group</th>
+      <th>Phone no</th>
+      <th>Disease</th>
+      <th>Department</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in query %}
+    <tr>
+      <td>{{post.pid}}</td>
+      <td>{{post.firstName}}</td>
+      <td>{{post.lastName}}</td>
+      <td>{{post.age}}</td>
+      <td>{{post.gender}}</td>
+      <td>{{post.blood}}</td>
+      <td>{{post.phno}}</td>
+      <td>{{post.disease}}</td>
+      <td>{{post.dept}}</td>
+      <td>{{post.status}}</td>
+      <td>{{post.date}}</td>
+      <td>{{post.time}}</td>
+      <td>
+        <a href="/edit/{{post.pid}}"
+          ><button id="edit" class="action">Edit</button></a
+        >
+      </td>
+      <td>
+        <a href="/delete/{{post.pid}}"
+          ><button
+            class="action"
+            onclick="return confirm('Are you sure to delete data');"
+          >
+            Delete
+          </button></a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock body %}

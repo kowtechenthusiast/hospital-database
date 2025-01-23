@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% block title %}
+Doctor update
+{% endblock title %}
+{% block css %}
+<style>
+.d-form {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 35px;
+  }
+  
+  #form-title {
+        margin: 50px 0px 25px 0px;
+        position: relative;
+        color: rgb(55, 55, 116);
+        display: inline-block;
+      }
+  
+  #form-title::after {
+    content: "";
+    width: 100%;
+    height: 8px;
+    background-color: rgb(64, 64, 105);
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    border-radius: 50%;
+    opacity: 0.7;
+    box-shadow: 3px 3px 15px rgb(55, 55, 116);
+  }
+  form {
+    min-width: 300px;
+    max-width: 1000px;
+    width: 100%;
+    background-color: rgba(211, 219, 211, 0.66);
+    font-family: "Roboto", sans-serif;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.421);
+    padding: 30px;
+  }
+  
+  form p {
+    margin: 20px 60px;
+    font-size: 1.3rem;
+  }
+  
+  form label {
+    display: block;
+    margin-top: 15px;
+  }
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="tel"],
+  select {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    padding: 5px 20px;
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid rgb(170, 166, 166);
+  }
+
+  input:focus,
+  select:focus{
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+  }
+  form .btn {
+    width: 130px;
+    height: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  form .btn:hover {
+        transform: scale(0.97);
+        opacity: 0.8;
+  }
+  button[type="submit"] {
+        margin: 10px 30px;
+        background-color: #4CAF50;
+        color: white;
+      }
+      
+      button[type="reset"] {
+        background-color: #f44336;
+        color: white;
+      }
+</style>
+
+{% endblock css %}
+
+{% block body %}
+<div style="text-align: center;"><h1 id="form-title">Doctor Update</h1></div>
+<div class="d-form">
+      <form action="/doctor" method="post">
+            <p>
+            <label for="firstName">First name: </label>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              placeholder="M S"
+              required
+            />
+          </p>
+
+          <p>
+            <label for="lastName">Last name: </label>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              placeholder="Kapoor"
+              required
+            />
+          </p>
+
+            <p>
+            <label for="department">Department: </label>
+            <select name="department" id="department">
+                  <option value="">select here</option>
+                  <option value="Internal">Internal medicine</option>
+                  <option value="Dental">Dental</option>
+                  <option value="Neurology">Neurology</option>
+                  <option value="Psychiatry">Psychiatry</option>
+                  <option value="Radiology">Radiology </option>
+                  <option value="Maternity">Maternity</option>
+                  <option value="Cardiology">Cardiology</option>
+                  <option value="Dermatology">Dermatology</option>
+                  <option value="Orthopedics">Orthopedics</option>
+		</select>
+		</p>
+
+            <p>
+                  <label for="salary">Salary: </label>
+                  <input
+                    type="number"
+                    name="salary"
+                    id="salary"
+                    step="5000"
+                    min="40000"
+                    max="100000"
+                    required
+                  />
+            </p>
+
+            <p>
+                  <label for="phno">Phone no: </label>
+                  <input
+                    type="tel"
+                    name="phno"
+                    id="phno"
+                    pattern="[0-9]{10}"
+                    placeholder="9999999999"
+                    required
+                  />
+            </p>
+      </br>
+		<button type="submit" class="btn">Submit</button>
+		<button type="reset" class="btn">Reset</button>
+      </form>
+</div>
+{% endblock body %}

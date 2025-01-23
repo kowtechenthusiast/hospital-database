@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}
+My Activity
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+      #title {
+            margin-top:20px;
+      }
+      .doctor-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9rem;
+            min-width: 80vw;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            position: relative;
+            left:10vw;
+       }
+       .doctor-table thead tr {
+            background-color: #009879;
+            color: fff;
+            text-align: left;
+            font-weight: bold;
+            font-size: 1.05rem;
+       }
+       .doctor-table th, .doctor-table td {
+            padding: 12px 15px;
+       }
+       .doctor-table tbody tr {
+            border-bottom: 1px solid #ddd;
+            background-color: #b1f4b553;
+       }
+       .doctor-table tbody tr:hover{
+            background-color: transparent;
+       }
+       .doctor-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+       }
+       #bin {
+          width: 30px;
+          height: 30px;        
+          display:grid;
+          place-items: center;
+          border-radius:50%;
+          background-color:transparent;
+       }
+       #bin a {
+          color: #999;
+       }
+       #bin:hover a,#bin:hover{
+            background-color: rgb(239, 81, 81);
+            color: #111;
+            transition:0.5s;
+       }
+
+</style>
+
+{% endblock css %}
+
+{% block body %}
+     <table class="doctor-table">
+          <thead>
+               <tr>
+                  <th>S.no.</th>
+                    <th>Pid</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Action</th>
+                    <th>Timestamp</th>
+                    <th colspan=0.5></th>
+               </tr>
+          </thead>
+          <tbody>
+               {% for post in posts %}
+               <tr>
+                  <td>{{post.tid}}</td>
+                    <td>{{post.pid}}</td>
+                    <td>{{post.firstName}}</td>
+                    <td>{{post.lastName}}</td>
+                    <td>{{post.action}}</td>
+                    <td>{{post.timestamp}}</td>
+                    <td><div id="bin"><a href="/deletetrgr/{{post.tid}}"><i class="fa-solid fa-trash"></i></div></a></td>
+               </tr>
+               {% endfor %}
+          </tbody>
+     </table>
+
+{% endblock body %}
+

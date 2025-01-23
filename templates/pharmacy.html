@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Life Line | Pharmacy
+{% endblock title %}
+{% block css %}
+<style>
+      #title {
+            margin-top:20px;
+            font-family: "Roboto", sans-serif;
+      }
+      .pharmacy-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9rem;
+            min-width: 90vw;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            position: relative;
+            left:5vw;
+       }
+       .pharmacy-table thead tr {
+            background-color: #009879;
+            color: fff;
+            text-align: left;
+            font-weight: bold;
+       }
+       .pharmacy-table th, .pharmacy-table td {
+            padding: 12px 15px;
+       }
+       .pharmacy-table tbody tr {
+            border-bottom: 1px solid #ddd;
+            background-color: #b1f4b553;
+       }
+       .pharmacy-table tbody tr:hover{
+            background-color: transparent;
+       }
+       .pharmacy-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+       }
+       #tablet {
+          width: 20px;
+          height: 20px;
+          border-radius: 20%;
+          border: 1px solid #009879;
+       }
+       #medsub {
+          text-align: center;
+          width:150px;
+          height:50px;
+          border-radius: 20%;
+          font-size: 1.2rem;
+          border: 1px solid #009879;
+          background-color: #00987ad0;
+          color: whitesmoke;
+       }
+       #medsub:hover{
+          background-color: #077c65;
+          transform: scale(0.95);
+          transition: 0.3s;
+       }
+</style>
+
+{% endblock css %}
+
+{% block body %}
+<form action="/medicine" method="post">
+     {% for department, query in results %}
+     <h1 id="title">{{department}}</h1>
+     <table class="pharmacy-table">
+          <thead>
+               <tr>
+                    <th>S.no.</th>
+                    <th>Name</th>
+                    <th>Specification</th>
+                    <th>Prize</th>
+                    <th></th>
+               </tr>
+          </thead>
+          <tbody>
+               {% for post in query %}
+               <tr>
+                  <td>{{post.tabid}}</td>
+                    <td>{{post.name}}</td>
+                    <td>{{post.specification}}</td>
+                    <td>{{post.prize}}</td>
+                    <td><input type="checkbox" name="tablet[]" id="tablet" value="{{post.name}}"></td>
+               </tr>
+               {% endfor %}
+          </tbody>
+     </table>
+</br></br>
+     {% endfor %}
+<div style="text-align: center;"><button type="submit" id="medsub" target="_blank">Submit</button></div>
+</form>
+{% endblock body %}
+

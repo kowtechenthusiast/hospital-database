@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Life Line || HOME
+{% endblock title %}
+{% block css %}
+<style>
+      #appointment {
+            height:80px;
+            width:250px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #000;
+            background-color: rgb(55, 120, 233);
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            position: fixed;
+            bottom: 30px;
+            right: 5vw;
+            z-index: 10;
+            transition: 0.5s;
+      }
+      #appointment:hover {
+            box-shadow: 3px 3px 25px 5px rgb(55, 120, 233);
+            color: rgb(175, 234, 234);
+            background-color: rgb(12, 90, 226);
+      }
+      #front-image {
+        width: 85vw;
+        height: 70vh;
+        background-image: url(static/nurse.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 10x 500px;
+        margin: 10px 7.5vw;
+        position: relative;
+  }
+  
+  #card-info {
+        height: 55%;
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        /* margin: 0 20%; */
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 10px;
+    }
+    
+    .cards {
+        background-color: #246095c8;
+        min-width: 340px;
+        margin: 1px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: aliceblue;
+        padding: 0px 20px;
+        gap: 15px;
+        border-radius: 30px 0px;
+        transition: all 0.3s ease, box-shadow 0.3s ease;
+        text-align: justify;
+    }
+    
+    .cards i {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .cards:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 16px #246095;
+        background-color: #1d72bd;
+        font-family: "Roboto", sans-serif;
+  
+    }
+  
+    .title-card {
+        font-size: 1.7rem;
+        font-weight: bolder;
+        text-align: center;
+    }
+  
+  #Working {
+        position: relative;
+  }
+  .left {
+        position: absolute;
+        left: 10px;
+        margin-bottom: 70px;
+  }
+  
+  .right {
+        /* position: absolute;
+        right: 0px; */
+        margin-left: 185px;
+  }
+  
+   #about {
+        height: 100vh;
+        max-width: 100vw;
+        margin-top: 100px;
+        background-color: #ebfbff;
+        position: relative;
+        padding: 3% 6%;
+  }
+  
+  #about img {
+        width: 30vw;
+        position: absolute;
+        right: 100px;
+        top: 50px;
+        border-radius: 20px;
+  }
+  
+  #aboutus {
+        width: 45vw;
+        height: 100%;
+  }
+  
+  #aboutus h2 {
+        font-size: 4rem;
+        margin-bottom: 30px;
+  }
+  
+  #aboutus p {
+        text-align: justify;
+        line-height: 2.5rem;
+        margin-bottom: 30px;
+  
+  }
+  
+  #aboutus #coat {
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin-top: 70px;
+        white-space: nowrap;
+  }
+  
+  #aboutus h3 {
+        font-size: 2rem;
+        margin-top: 90px;
+  }
+  
+  #aboutus .contact {
+        width: 300px;
+        height: 60px;
+        margin: 30px;
+        background-color: rgb(70, 188, 214);
+        border-radius: 30px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border: 2px solid rgb(22, 199, 239);
+        transition: 0.5s;
+  
+  }
+  
+  #aboutus .contact i {
+        font-size: 2rem;
+  }
+  
+  #aboutus .contact:hover {
+        transform: scale(1.05);
+        background-color: rgb(22, 199, 239);
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 1px 1px 5px black, inset -1px -1px 5px white;
+    } 
+  
+</style>
+
+{% endblock css %}
+
+{% block body %}
+<div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+                  <div style="text-align: center" class="flash-message flash-{{ category }}">
+                      Welcome {{current_user.username}}
+                      <button type="button" class="flash-close" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}
+  </div>
+  <a href="/patient"><div id="appointment">
+    Book Appointment
+</div></a>
+
+<div id="front-image">
+
+<div id="card-info">
+
+  <div class="cards">
+    <i class="fa-solid fa-truck-medical"></i>
+    <div class="title-card">Emergency</div>
+    <div>Help / Rescues the Patient in case of the Emergency situation by doing just a click. Our Ambulance comes right in front of the door for help.
+
+    </div>
+  </div>
+
+  <div class="cards">
+    <i class="fa-regular fa-clock"></i>
+    <div class="title-card">Working Hours</div>
+    <div id="Working">
+        <div><span class="left">Monday - Friday</span><span class="right">8.00 – 18.00</span></div><br>
+        <div><span class="left">Saturday</span><span class="right">8.00 – 16.00</span></div><br>
+        <div><span class="left">Sunday</span><span class="right">8.00 – 13.00</span></div><br>
+    </div>
+  </div>
+
+  <div class="cards">
+    <i class="fa-regular fa-hospital"></i>
+    <div class="title-card">Clinic Timetable</div>
+    <div>Check our clinic timetable to find available consultation slots with our expert doctors and ensure timely and efficient care for your health needs.</div>
+  </div>
+
+</div>
+</div>
+
+<section id="about">
+<div id="aboutus">
+  <h2>Why Choose LifeLine</h2>
+  <p>Established by Dr Prathap C Reddy in 1983, LifeLine Healthcare has a robust presence across the healthcare ecosystem. From routine wellness and preventive health care to innovative life-saving treatments and diagnostic services, LifeLine Hospitals has touched more than 200 million lives from over 120 countries.</p>
+  <p>LifeLine Group constitutes the best hospital in India with over 10,000 beds across 73 hospitals, 5000+ pharmacies, over 300 clinics, 1100+ diagnostic centres and 200+ Telemedicine units.</p>
+  <p id="coat">“Bringing healthcare of International standards within the reach of every individual.”</p>
+  <h3>Contact Us</h3>
+  <div id="contactus">
+      <div class="contact"><span><i class="fa-solid fa-tty" style="color: #ffffff;"></i></span> 1860-500-1066 </div>
+      <div class="contact"><span><i class="fa-solid fa-phone-volume" style="color: #ffffff;"></i></span>+918069991061</div>
+  </div>
+  
+</div>
+</div>
+<img src="../static/smiley-doctor.jpg" alt="">
+</section>
+
+
+{% endblock body %}
