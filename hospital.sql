@@ -91,18 +91,18 @@ INSERT INTO `patient` (`pid`, `firstName`, `lastName`, `age`, `gender`, `blood`,
 --
 -- Triggers `patient`
 --
-DELIMITER $$
-CREATE TRIGGER `patientdelete` BEFORE DELETE ON `patient` FOR EACH ROW INSERT INTO trigr VALUES(null,OLD.pid,OLD.firstName,OLD.lastName,OLD.email,'Patient Deleted',NOW())
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `patientinsertion` AFTER INSERT ON `patient` FOR EACH ROW INSERT INTO trigr VALUES(null,NEW.pid,NEW.firstName,NEW.lastName,NEW.email,'Patient Inserted',NOW())
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `patientupdate` AFTER UPDATE ON `patient` FOR EACH ROW INSERT INTO trigr VALUES(null,NEW.pid,NEW.firstName,NEW.lastName,NEW.email,'Patient Updated',NOW())
-$$
-DELIMITER ;
+-- DELIMITER $$
+-- CREATE TRIGGER `patientdelete` BEFORE DELETE ON `patient` FOR EACH ROW INSERT INTO trigr VALUES(null,OLD.pid,OLD.firstName,OLD.lastName,OLD.email,'Patient Deleted',NOW())
+-- $$
+-- DELIMITER ;
+-- DELIMITER $$
+-- CREATE TRIGGER `patientinsertion` AFTER INSERT ON `patient` FOR EACH ROW INSERT INTO trigr VALUES(null,NEW.pid,NEW.firstName,NEW.lastName,NEW.email,'Patient Inserted',NOW())
+-- $$
+-- DELIMITER ;
+-- DELIMITER $$
+-- CREATE TRIGGER `patientupdate` AFTER UPDATE ON `patient` FOR EACH ROW INSERT INTO trigr VALUES(null,NEW.pid,NEW.firstName,NEW.lastName,NEW.email,'Patient Updated',NOW())
+-- $$
+-- DELIMITER ;
 
 -- --------------------------------------------------------
 
