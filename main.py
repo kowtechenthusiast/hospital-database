@@ -276,4 +276,5 @@ def medicine():
 
     return render_template("invoice.html", query=query, total=total)
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
