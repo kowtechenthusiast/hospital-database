@@ -5,13 +5,13 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
-
+import os
 
 local_server=True
 app = Flask(__name__, template_folder='templates')
-app.secret_key="rnsit@123"
+app.secret_key=os.getenv("SECRET_KEY")
 
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:@localhost:3306/hospital'
+app.config['SQLALCHEMY_DATABASE_URI']=os.getenv("DATABASE_URL")
 
 db=SQLAlchemy(app)
 
