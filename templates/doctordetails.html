@@ -2,7 +2,26 @@
 {% block css %}
 <style>
   #title {
-    margin-top: 20px;
+    margin: 25px auto;
+    color: rgb(55, 55, 116);
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+  }
+
+  #title::after {
+    content: "";
+    width: 100%;
+    height: 8px;
+    background-color: rgb(64, 64, 105);
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    border-radius: 50%;
+    opacity: 0.7;
+    box-shadow: 3px 3px 15px rgb(55, 55, 116);
   }
   .doctor-table {
     border-collapse: collapse;
@@ -29,6 +48,7 @@
   .doctor-table tbody tr {
     border-bottom: 1px solid #ddd;
     background-color: #b1f4b553;
+    font-size: 0.8rem;
   }
   .doctor-table tbody tr:hover {
     background-color: transparent;
@@ -37,14 +57,15 @@
     border-bottom: 2px solid #009879;
   }
   .action {
-    width: 120px;
+    width: 90px;
     height: 30px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border-radius: 5px;
     outline: none;
     border: 1px solid red;
     /* font-weight:bold; */
     background-color: rgb(244, 74, 74);
+    color: aliceblue;
   }
   .action:hover {
     background-color: rgba(244, 74, 74, 0.779);

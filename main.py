@@ -6,6 +6,9 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 local_server=True
 app = Flask(__name__, template_folder='templates')
